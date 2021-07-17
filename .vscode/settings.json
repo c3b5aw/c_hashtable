@@ -4,6 +4,6 @@
 		".vscode": true,
 		".md": true,
 		"objs": true,
-		".git*" true
+		".git*": true
 	}
 }

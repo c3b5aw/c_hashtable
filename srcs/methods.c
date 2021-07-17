@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 21:45:44 by marvin            #+#    #+#             */
-/*   Updated: 2021/07/17 22:29:30 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/17 23:22:44 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ t_hashtable_item	*hashtable_insert(t_hashtable **h, char *key, void *value)
 
 	item = hashtable_item_create(key, value);
 	if (!item)
-		return (false);
+		return (0);
 	index = __hashtable_hash_function(key);
 	current_item = (*h)->items[index];
 	if (!current_item)
