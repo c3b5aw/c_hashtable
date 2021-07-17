@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 21:47:36 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/17 22:03:56 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 01:30:51 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 t_hashtable_item	*__handle_item_insert( \
 	t_hashtable **h, t_hashtable_item *item, unsigned long index);
 t_hashtable_item	*__handle_item_insert_collision( \
-		t_hashtable_item *item, t_hashtable_item *current_item);
+		t_hashtable **h, t_hashtable_item *item, \
+		t_hashtable_item *current_item);
 
 #endif

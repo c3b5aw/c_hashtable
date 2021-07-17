@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 21:47:20 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/17 23:02:51 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 01:31:13 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ t_hashtable	*hashtable_new(unsigned int size)
  * 
 **/
 
-void	hashtable_destroy(t_hashtable **table)
+void	hashtable_destroy(t_hashtable **table, bool dealloc_value)
 {
 	t_hashtable_item	*item;
 	unsigned int		i;
@@ -69,9 +69,42 @@ void	hashtable_destroy(t_hashtable **table)
 	{
 		item = (*table)->items[i];
 		if (item)
-			hashtable_item_destroy(item);
+			hashtable_item_destroy(item, dealloc_value);
 	}
 	free((*table)->items);
 	free((*table));
 	*table = 0;
+}
+
+/**
+ * @brief  
+ * @note   
+ * @param  **src 	(t_hashtable *)	: 		Hashtable to copy from
+ * @param  **dst 	(t_hashtable *)	:		Hashtable to copy to
+ * @retval 			(bool)			:		success
+ */
+bool	hashtable_copy(t_hashtable **src, t_hashtable **dst)
+{
+	unsigned int	i;
+
+	if (!*dst || !*src)
+		return (false);
+	i = -1;
+	while (++i < (*src)->size && i < (*dst)->size)
+		if ((*src)->items[i])
+			if (!hashtable_item_copy(dst, (*src)->items[i]))
+				return (false);
+	return (true);
+}
+
+void	hashtable_iter(t_hashtable *h, void (*f)(void *))
+{
+	unsigned int	i;
+
+	if (!h || !f)
+		return ;
+	i = -1;
+	while (++i < h->size)
+		if (h->items[i])
+			f(h->items[i]);
 }
