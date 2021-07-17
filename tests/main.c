@@ -1,18 +1,20 @@
-#include "../includes/hashtable.h"
-#include <stdio.h>
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   main.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/17 23:37:39 by c3b5aw            #+#    #+#             */
+/*   Updated: 2021/07/17 23:46:40 by c3b5aw           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include "tests.h"
 
 int	main(void)
 {
-	t_hashtable	*hashtable;
-
-	hashtable = hashtable_new(5);
-	printf("[+] Created hashtable.\n");
-	hashtable_destroy(&hashtable);
-	if (hashtable != 0)
-	{
-		printf("[!] Hashtable still exists!");
+	if (!basic_tests())
 		return (EXIT_FAILURE);
-	}
-	printf("[+] Hashtable has been destroyed.\n");
 	return (EXIT_SUCCESS);
 }

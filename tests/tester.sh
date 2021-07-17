@@ -1,9 +1,8 @@
 #!/bin/bash
 
-valgrind \
-	--track-fds=yes \
+valgrind -s \
 	--leak-check=full \
 	--show-reachable=yes \
-	--error-exitcode=1 \
+	--error-exitcode=42 \
 	--track-origins=yes \
 	./test_bin

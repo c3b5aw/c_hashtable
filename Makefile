@@ -38,7 +38,7 @@ clean	:
 		@	$(RM) -r $(OBJS_DIR)
 
 tests:	re
-		@	$(CC) $(CFLAGS) tests/main.c -I includes $(NAME) -o $(NAME_TEST)
+		@	$(CC) $(CFLAGS) tests/main.c tests/basic_tests.c tests/utils.c -I includes $(NAME) -o $(NAME_TEST)
 		@	./tests/tester.sh
 
 .PHONY	:	fclean clean re all

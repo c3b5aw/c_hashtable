@@ -1,25 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hash.c                                             :+:      :+:    :+:   */
+/*   tests.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2021/07/17 21:46:24 by marvin            #+#    #+#             */
-/*   Updated: 2021/07/17 23:55:40 by c3b5aw           ###   ########.fr       */
+/*   Created: 2021/07/17 23:43:04 by c3b5aw            #+#    #+#             */
+/*   Updated: 2021/07/17 23:58:17 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/hashtable_hash.h"
+#ifndef TESTS_H
+# define TESTS_H
 
-unsigned long	__hashtable_hash_function(unsigned int capacity, char *key)
-{
-	unsigned long	i;
-	int				k;
+# include <stdio.h>
+# include <string.h>
+# include "../includes/hashtable.h"
 
-	i = 0;
-	k = -1;
-	while (key[++k])
-		i += key[k];
-	return (i % capacity);
-}
+bool	test_init(t_hashtable **hashtable, unsigned int size, char *test_name);
+bool	test_destroy(t_hashtable **hashtable, char *test_name);
+int		basic_tests(void);
+
+#endif
