@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 23:37:38 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 00:13:39 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 01:35:55 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,14 +42,14 @@ bool	insert_max_test(void)
 	t_hashtable			*hashtable;
 
 	hashtable = 0;
-	if (!test_init(&hashtable, 5, "INSERT_ONE_TEST"))
+	if (!test_init(&hashtable, 5, "INSERT_MAX_TEST"))
 		return (false);
-	hashtable_insert(&hashtable, strdup("NAME_1"), 0);
-	hashtable_insert(&hashtable, strdup("NAME_2"), 0);
-	hashtable_insert(&hashtable, strdup("NAME_3"), 0);
-	hashtable_insert(&hashtable, strdup("NAME_4"), 0);
-	hashtable_insert(&hashtable, strdup("NAME_5"), 0);
-	if (!test_destroy(&hashtable, "INSERT_ONE_TEST"))
+	hashtable_insert(&hashtable, strdup("NAME_1"), strdup("NAME_1"));
+	hashtable_insert(&hashtable, strdup("NAME_2"), strdup("NAME_2"));
+	hashtable_insert(&hashtable, strdup("NAME_3"), strdup("NAME_3"));
+	hashtable_insert(&hashtable, strdup("NAME_4"), strdup("NAME_4"));
+	hashtable_insert(&hashtable, strdup("NAME_5"), strdup("NAME_5"));
+	if (!test_destroy(&hashtable, "INSERT_MAX_TEST"))
 		return (false);
 	return (true);
 }
@@ -59,15 +59,15 @@ bool	insert_more_test(void)
 	t_hashtable			*hashtable;
 
 	hashtable = 0;
-	if (!test_init(&hashtable, 5, "INSERT_ONE_TEST"))
+	if (!test_init(&hashtable, 5, "INSERT_MORE_TEST"))
 		return (false);
-	hashtable_insert(&hashtable, strdup("NAME_1"), 0);
-	hashtable_insert(&hashtable, strdup("NAME_2"), 0);
-	hashtable_insert(&hashtable, strdup("NAME_3"), 0);
-	hashtable_insert(&hashtable, strdup("NAME_4"), 0);
-	hashtable_insert(&hashtable, strdup("NAME_5"), 0);
-	hashtable_insert(&hashtable, strdup("NAME_6"), 0);
-	if (!test_destroy(&hashtable, "INSERT_ONE_TEST"))
+	hashtable_insert(&hashtable, strdup("NAME_1"), strdup("NAME_1"));
+	hashtable_insert(&hashtable, strdup("NAME_2"), strdup("NAME_2"));
+	hashtable_insert(&hashtable, strdup("NAME_3"), strdup("NAME_3"));
+	hashtable_insert(&hashtable, strdup("NAME_4"), strdup("NAME_4"));
+	hashtable_insert(&hashtable, strdup("NAME_5"), strdup("NAME_5"));
+	hashtable_insert(&hashtable, strdup("NAME_6"), strdup("NAME_6"));
+	if (!test_destroy(&hashtable, "INSERT_MORE_TEST"))
 		return (false);
 	return (true);
 }

@@ -13,7 +13,7 @@ CSANITIZE	= -g -fsanitize=address
 RM			= /bin/rm -f
 PRINTER		= printf
 
-SRCS = __private_methods.c hash.c item.c methods.c table.c
+SRCS = __private_methods.c hash.c item.c methods.c table.c utils.c
 OBJS = $(addprefix objs/, $(SRCS:.c=.o))
 
 PREFIX_MSG = "[LIB-HASHTABLE]"
