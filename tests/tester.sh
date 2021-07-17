@@ -1,3 +1,5 @@
+#!/bin/bash
+
 valgrind \
 	--track-fds=yes \
 	--leak-check=full \
