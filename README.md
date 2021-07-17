@@ -1,18 +1,31 @@
 # c_hashtable
 
 [![.github/workflows/norminette.yml](https://github.com/c3b5aw/c_hashtable/actions/workflows/norminette.yml/badge.svg)](https://github.com/c3b5aw/c_hashtable/actions/workflows/norminette.yml) <br />
-[![.github/workflows/tests.yml](https://github.com/c3b5aw/c_hashtable/actions/workflows/tests.yml/badge.svg)](https://github.com/c3b5aw/c_hashtable/actions/workflows/tests.yml) <br /> <br />
+[![.github/workflows/tests.yml](https://github.com/c3b5aw/c_hashtable/actions/workflows/tests.yml/badge.svg)](https://github.com/c3b5aw/c_hashtable/actions/workflows/tests.yml) <br />
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4dd2af2c25784a18a92d5ac8f55f426e)](https://www.codacy.com/gh/c3b5aw/c_hashtable/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=c3b5aw/c_hashtable&amp;utm_campaign=Badge_Grade)
 
 ## usage
 
-```text
+```C
 Aim to emulate dictonnary table
 ```
 
 ### required header
 ```C
 #include "includes/hashtable.c"
+
+int	main(void)
+{
+	t_hashtable	*hashtable;
+
+	hashtable = hashtable_new(5);
+	if (!hashtable)
+		return (EXIT_FAILURE);
+	hashtable_destroy(&hashtable);
+	if (hashtable)
+		return (EXIT_FAILURE);
+	return (EXIT_SUCCESS);
+}
 ```
 
 ### data types
