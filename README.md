@@ -7,11 +7,6 @@
 ## usage
 
 ```C
-Aim to emulate dictonnary table
-```
-
-### required header
-```C
 #include "includes/hashtable.c"
 
 int	main(void)
@@ -26,6 +21,11 @@ int	main(void)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
 }
+```
+
+### required header
+```C
+#include "includes/hashtable.c"
 ```
 
 ### data types
