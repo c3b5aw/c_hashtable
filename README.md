@@ -16,7 +16,7 @@ int	main(void)
 	hashtable = hashtable_new(5);
 	if (!hashtable)
 		return (EXIT_FAILURE);
-	hashtable_destroy(&hashtable);
+	hashtable_destroy(&hashtable, true);
 	if (hashtable)
 		return (EXIT_FAILURE);
 	return (EXIT_SUCCESS);
