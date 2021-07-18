@@ -19,7 +19,7 @@ PRINTER		= printf
 
 RM			= /bin/rm -f
 
-CMP_MSG		= "$(PREFIX_MSG)[\\033[33m\+\\033[37m]"
+CMP_MSG		= "$(PREFIX_MSG)[\\033[33m\+\\033[0m]"
 INF_MSG		= "$(PREFIX_MSG)[\\033[37mINF\\033[0m]"
 SCS_MSG		= "$(PREFIX_MSG)[\\033[32mSUC\\033[0m]"
 
