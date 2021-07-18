@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 01:44:19 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 01:59:23 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 02:01:52 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,7 @@ bool	find_one(void)
 	value = hashtable_item_get(hashtable, "NAME_1");
 	if (!value)
 		return (error(&hashtable, FIND_TEST_1, EXIST_ERR));
-	if (value)
-		printf("[FOUND]: %s\n", (char *)value);
+	printf("[FOUND]: %s\n", (char *)value);
 	if (!test_destroy(&hashtable, FIND_TEST_1))
 		return (false);
 	return (true);
