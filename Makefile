@@ -6,15 +6,17 @@
 #    By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/18 04:24:34 by c3b5aw            #+#    #+#              #
-#    Updated: 2021/07/18 04:29:18 by c3b5aw           ###   ########.fr        #
+#    Updated: 2021/07/18 07:42:58 by c3b5aw           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME		= lhashtable.a
 PREFIX_MSG 	= "[LIB-HASHTABLE]"
-SRCS 		= __private_methods.c hash.c item.c \
+SRCS 		= bucket_methods.c buckets.c \
+			collision_chains.c handler.c \
+			hash.c item.c \
 			table.c utils.c
-TEST_SRCS 	= tests/main.c tests/basic_tests.c \
+TEST_SRCS 	= tests/adv_tests.c tests/main.c tests/basic_tests.c \
 			tests/find_tests.c tests/utils.c
 
 CC		= clang

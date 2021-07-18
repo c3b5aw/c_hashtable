@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 01:44:19 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 04:43:28 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 04:54:27 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ bool	find_removed_one(void)
 	return (true);
 }
 
-int	find_tests(void)
+bool	find_tests(void)
 {
 	if (!find_one())
 		return (false);

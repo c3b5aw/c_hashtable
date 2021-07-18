@@ -6,12 +6,13 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 21:47:20 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 02:09:36 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 06:57:42 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/hashtable_hash.h"
-#include "../includes/hashtable__private_methods.h"
+#include "../includes/hashtable_handler.h"
+#include "../includes/hashtable_buckets.h"
 #include "../includes/hashtable.h"
 
 /**
@@ -46,6 +47,12 @@ t_hashtable	*hashtable_new(unsigned int size)
 	i = -1;
 	while (++i < ret->size)
 		ret->items[i] = 0;
+	ret->buckets = hashtable_buckets_init(ret);
+	if (!ret->buckets)
+	{
+		hashtable_destroy(&ret, true);
+		return (0);
+	}
 	return (ret);
 }
 
@@ -72,6 +79,7 @@ void	hashtable_destroy(t_hashtable **table, bool dealloc_value)
 		if (item)
 			hashtable_item_destroy(item, dealloc_value);
 	}
+	hashtable_buckets_destroy(*table, dealloc_value);
 	free((*table)->items);
 	free((*table));
 	*table = 0;
@@ -155,7 +163,17 @@ t_hashtable_item	*hashtable_insert(t_hashtable **h, char *key, void *value)
 		return (0);
 	index = __hashtable_hash_function((*h)->size, key);
 	current_item = (*h)->items[index];
+	if ((*h)->count == (*h)->size)
+	{
+		if (!__handle_table_resize(h))
+		{
+			hashtable_item_destroy(item, true);
+			return (0);
+		}
+		free(item);
+		return (hashtable_insert(h, key, value));
+	}
 	if (!current_item)
 		return (__handle_item_insert(h, item, index));
-	return (__handle_item_insert_collision(h, item, current_item));
+	return (__handle_item_insert_collision(h, item, current_item, index));
 }
