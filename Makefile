@@ -1,4 +1,4 @@
-NAME		= lib_hashtable.a
+NAME		= lhashtable.a
 NAME_TEST	= test_bin
 
 CC		= clang
