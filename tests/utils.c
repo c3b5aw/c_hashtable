@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 23:40:03 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 01:53:57 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 09:20:41 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	show_data(t_hashtable_item *item)
 
 bool	test_destroy(t_hashtable **hashtable, char *test_name)
 {
-	hashtable_iter(*hashtable, show_data);
 	hashtable_destroy(hashtable, true);
 	if (*hashtable != 0)
 	{
