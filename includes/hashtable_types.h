@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 21:47:46 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 05:48:20 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 09:28:46 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,6 @@
 
 # include <stdlib.h>
 # include <stdbool.h>
-# include <stdio.h>
-# include <string.h>
 
 typedef struct s_hashtable_item
 {
