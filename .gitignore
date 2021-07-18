@@ -1,4 +1,3 @@
 *.o
 *.a
-test_bin
-lib_hashtable.a
+tests_bin

@@ -1,7 +1,21 @@
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2021/07/18 04:24:34 by c3b5aw            #+#    #+#              #
+#    Updated: 2021/07/18 04:24:51 by c3b5aw           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
+
 NAME		= lhashtable.a
-PREFIX_MSG = "[LIB-HASHTABLE]"
-SRCS = __private_methods.c hash.c item.c table.c utils.c
-TEST_SRCS = tests/main.c tests/basic_tests.c tests/find_tests.c tests/utils.c
+PREFIX_MSG 	= "[LIB-HASHTABLE]"
+SRCS 		= __private_methods.c hash.c item.c \
+			table.c utils.c
+TEST_SRCS 	= tests/main.c tests/basic_tests.c \
+			tests/find_tests.c tests/utils.c
 
 CC		= clang
 LINKER	= ar -rcs
