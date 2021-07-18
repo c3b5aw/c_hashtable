@@ -34,6 +34,7 @@ $(NAME)	: 	$(OBJS)
 re		:	fclean all
 fclean	:	clean
 		@	$(RM) $(NAME)
+		@	$(RM) $(NAME_TEST)
 clean	:
 		@	$(PRINTER) "$(INF_MSG) Deleting assets...\n"
 		@	$(RM) -r $(OBJS_DIR)
