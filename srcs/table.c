@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 21:47:20 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 08:50:53 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 09:15:48 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -133,14 +133,26 @@ bool	hashtable_copy(t_hashtable **src, t_hashtable **dst)
 
 void	hashtable_iter(t_hashtable *h, void (*f)(t_hashtable_item *))
 {
-	unsigned int	i;
+	t_hashtable_bucket	*bucket;
+	unsigned int		i;
 
 	if (!h || !f)
 		return ;
 	i = -1;
 	while (++i < h->size)
+	{
 		if (h->items[i])
 			f(h->items[i]);
+		if (h->buckets[i])
+		{
+			bucket = h->buckets[i];
+			while (bucket)
+			{
+				f(bucket->item);
+				bucket = bucket->next;
+			}
+		}
+	}
 }
 
 /**

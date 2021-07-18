@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 06:08:51 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 08:43:50 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 09:02:35 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,5 @@ void				__handle_collision_chain_remove_head( \
 void				__handle_collision_chain_remove_iter( \
 	t_hashtable *hashtable, t_hashtable_item *item, \
 	t_hashtable_bucket *bucket, unsigned long index);
-t_hashtable_item	*hashtable_bucket_copy(\
-	t_hashtable **dst, t_hashtable_bucket *bucket);
 
 #endif

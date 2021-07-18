@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 06:02:03 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 07:57:57 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 09:07:54 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,13 @@ t_hashtable_bucket	**hashtable_buckets_init(t_hashtable *hashtable)
 
 void	hashtable_buckets_destroy(t_hashtable *hashtable, bool dealloc_item)
 {
-	t_hashtable_bucket	**buckets;
 	unsigned int		i;
 
 	i = -1;
-	buckets = hashtable->buckets;
 	while (++i < hashtable->size)
-		if (buckets[i])
-			hashtable_bucket_delete(buckets[i], dealloc_item);
-	free(buckets);
+		if (hashtable->buckets[i])
+			hashtable_bucket_delete(hashtable->buckets[i], dealloc_item);
+	free(hashtable->buckets);
 	hashtable->buckets = 0;
 }
 
