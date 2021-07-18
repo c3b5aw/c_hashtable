@@ -1,5 +1,7 @@
 NAME		= lhashtable.a
-NAME_TEST	= test_bin
+PREFIX_MSG = "[LIB-HASHTABLE]"
+SRCS = __private_methods.c hash.c item.c table.c utils.c
+TEST_SRCS = tests/main.c tests/basic_tests.c tests/find_tests.c tests/utils.c
 
 CC		= clang
 LINKER	= ar -rcs
@@ -7,17 +9,16 @@ LINKER	= ar -rcs
 SRCS_DIR	 = srcs
 OBJS_DIR	 = objs
 INCLUDES_DIR = includes
+OBJS		 = $(addprefix objs/, $(SRCS:.c=.o))
+
+NAME_TEST	= tests_bin
 
 CFLAGS		= -Wall -Wextra -Werror -O3
 CSANITIZE	= -g -fsanitize=address
-RM			= /bin/rm -f
 PRINTER		= printf
 
-SRCS = __private_methods.c hash.c item.c table.c utils.c
-TESTS_SRCS = tests/main.c tests/basic_tests.c tests/find_tests.c tests/utils.c
-OBJS = $(addprefix objs/, $(SRCS:.c=.o))
+RM			= /bin/rm -f
 
-PREFIX_MSG = "[LIB-HASHTABLE]"
 CMP_MSG		= "$(PREFIX_MSG)[\\033[33m\+\\033[37m]"
 INF_MSG		= "$(PREFIX_MSG)[\\033[37mINF\\033[0m]"
 SCS_MSG		= "$(PREFIX_MSG)[\\033[32mSUC\\033[0m]"
@@ -39,8 +40,8 @@ clean	:
 		@	$(PRINTER) "$(INF_MSG) Deleting assets...\n"
 		@	$(RM) -r $(OBJS_DIR)
 
-tests:	re
-		@	$(CC) $(CFLAGS) $(TESTS_SRCS)  -I includes $(NAME) -o $(NAME_TEST)
+tests: re
+		@	$(CC) $(CFLAGS) $(TEST_SRCS)  -I includes $(NAME) -o $(NAME_TEST)
 		@	./tests/tester.sh
 
 .PHONY	:	fclean clean re all

@@ -5,4 +5,4 @@ valgrind -s \
 	--show-reachable=yes \
 	--error-exitcode=42 \
 	--track-origins=yes \
-	./test_bin
+	./tests_bin
