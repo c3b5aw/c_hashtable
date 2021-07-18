@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 01:44:19 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 04:23:53 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 04:43:28 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ bool	find_one(void)
 	hashtable_insert(&hashtable, strdup("NAME_3"), strdup("NAME_3"));
 	hashtable_insert(&hashtable, strdup("NAME_4"), strdup("NAME_4"));
 	hashtable_insert(&hashtable, strdup("NAME_5"), strdup("NAME_5"));
-	value = hashtable_item_get(hashtable, "NAME_1");
+	value = hashtable_item_get(hashtable, "NAME_1", true);
 	if (!value)
 		return (error(&hashtable, FIND_TEST_1, EXIST_ERR));
 	printf("[FOUND]: %s\n", (char *)value);
@@ -47,7 +47,7 @@ bool	find_no_existing(void)
 	hashtable_insert(&hashtable, strdup("NAME_3"), strdup("NAME_3"));
 	hashtable_insert(&hashtable, strdup("NAME_4"), strdup("NAME_4"));
 	hashtable_insert(&hashtable, strdup("NAME_5"), strdup("NAME_5"));
-	value = hashtable_item_get(hashtable, "NAME_10");
+	value = hashtable_item_get(hashtable, "NAME_10", true);
 	if (value)
 		return (error(&hashtable, FIND_TEST_2, NOEXIST_ERR));
 	if (!test_destroy(&hashtable, FIND_TEST_2))
@@ -70,7 +70,7 @@ bool	find_removed_one(void)
 	hashtable_insert(&hashtable, strdup("NAME_4"), strdup("NAME_4"));
 	hashtable_insert(&hashtable, strdup("NAME_5"), strdup("NAME_5"));
 	hashtable_item_remove(hashtable, item1);
-	value = hashtable_item_get(hashtable, "NAME_1");
+	value = hashtable_item_get(hashtable, "NAME_1", true);
 	if (value)
 		return (error(&hashtable, FIND_TEST_3, NOEXIST_ERR));
 	if (!test_destroy(&hashtable, FIND_TEST_3))

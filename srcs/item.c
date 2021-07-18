@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 21:46:30 by marvin            #+#    #+#             */
-/*   Updated: 2021/07/18 04:20:16 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 04:42:30 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 #include "../includes/hashtable_utils.h"
 #include "../includes/hashtable_table.h"
 #include "../includes/hashtable_hash.h"
+#include <stdio.h>
 
 t_hashtable_item	*hashtable_item_create(char *key, void *value)
 {
@@ -57,15 +58,18 @@ t_hashtable_item	*hashtable_item_copy( \
 	return (hashtable_insert(dst, __strdup(item->key), item->value));
 }
 
-void	*hashtable_item_get(t_hashtable *hashtable, char *key)
+void	*hashtable_item_get(t_hashtable *hashtable, char *key, bool value)
 {
 	t_hashtable_item	*ret;
 	unsigned long		index;
 
 	index = __hashtable_hash_function(hashtable->size, key);
 	ret = hashtable->items[index];
-	if (ret)
-		if (__strcmp(ret->key, key) == 0)
+	if (ret && __strcmp(ret->key, key) == 0)
+	{
+		if (value)
 			return (ret->value);
+		return (ret);
+	}
 	return (0);
 }

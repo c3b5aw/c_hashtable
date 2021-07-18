@@ -6,7 +6,7 @@
 #    By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/07/18 04:24:34 by c3b5aw            #+#    #+#              #
-#    Updated: 2021/07/18 04:24:51 by c3b5aw           ###   ########.fr        #
+#    Updated: 2021/07/18 04:29:18 by c3b5aw           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,7 +27,7 @@ OBJS		 = $(addprefix objs/, $(SRCS:.c=.o))
 
 NAME_TEST	= tests_bin
 
-CFLAGS		= -Wall -Wextra -Werror -O3
+CFLAGS		= -Wall -Wextra -Werror -g3
 CSANITIZE	= -g -fsanitize=address
 PRINTER		= printf
 
