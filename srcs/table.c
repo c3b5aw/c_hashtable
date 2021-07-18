@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 21:47:20 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 01:37:29 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 01:43:32 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,11 +77,14 @@ void	hashtable_destroy(t_hashtable **table, bool dealloc_value)
 }
 
 /**
- * @brief  
- * @note   
+ * * hashtable_copy
+ * 
+ * Iterate over src hashtable elements and copy them to dest.
+ * 
  * @param  **src 	(t_hashtable *)	: 		Hashtable to copy from
  * @param  **dst 	(t_hashtable *)	:		Hashtable to copy to
- * @retval 			(bool)			:		success
+ * 
+ * @return 			(bool)			:		success
  */
 bool	hashtable_copy(t_hashtable **src, t_hashtable **dst)
 {
@@ -96,6 +99,14 @@ bool	hashtable_copy(t_hashtable **src, t_hashtable **dst)
 				return (false);
 	return (true);
 }
+
+/**
+ * * hashtable_iter
+ * 
+ * @param  *h	(t_hashtable *)				 : Hashtable to iter in 
+ * @param  f	(f(*f)(t_hashtable_item *))) : function to eval on each item
+ * @return None
+ */
 
 void	hashtable_iter(t_hashtable *h, void (*f)(t_hashtable_item *))
 {

@@ -14,6 +14,7 @@ RM			= /bin/rm -f
 PRINTER		= printf
 
 SRCS = __private_methods.c hash.c item.c methods.c table.c utils.c
+TESTS_SRCS = tests/main.c tests/basic_tests.c tests/find_tests.c tests/utils.c
 OBJS = $(addprefix objs/, $(SRCS:.c=.o))
 
 PREFIX_MSG = "[LIB-HASHTABLE]"
@@ -38,7 +39,7 @@ clean	:
 		@	$(RM) -r $(OBJS_DIR)
 
 tests:	re
-		@	$(CC) $(CFLAGS) tests/main.c tests/basic_tests.c tests/utils.c -I includes $(NAME) -o $(NAME_TEST)
+		@	$(CC) $(CFLAGS) $(TESTS_SRCS)  -I includes $(NAME) -o $(NAME_TEST)
 		@	./tests/tester.sh
 
 .PHONY	:	fclean clean re all

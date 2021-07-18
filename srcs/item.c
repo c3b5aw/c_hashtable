@@ -6,13 +6,14 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 21:46:30 by marvin            #+#    #+#             */
-/*   Updated: 2021/07/18 01:16:04 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 01:59:46 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/hashtable_types.h"
 #include "../includes/hashtable_utils.h"
 #include "../includes/hashtable_methods.h"
+#include "../includes/hashtable_hash.h"
 
 t_hashtable_item	*hashtable_item_create(char *key, void *value)
 {
@@ -42,4 +43,17 @@ t_hashtable_item	*hashtable_item_copy( \
 	if (!item || !*dst)
 		return (0);
 	return (hashtable_insert(dst, __strdup(item->key), item->value));
+}
+
+void	*hashtable_item_get(t_hashtable *hashtable, char *key)
+{
+	t_hashtable_item	*ret;
+	unsigned long		index;
+
+	index = __hashtable_hash_function(hashtable->size, key);
+	ret = hashtable->items[index];
+	if (ret)
+		if (__strcmp(ret->key, key) == 0)
+			return (ret->value);
+	return (0);
 }
