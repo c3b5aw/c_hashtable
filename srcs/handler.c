@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 21:47:27 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 09:25:53 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 09:27:06 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_hashtable_item	*__handle_item_insert( \
 	++(*h)->count;
 	if ((*h)->count >= (*h)->size)
 	{
-		key_dump = strdup(item->key);
+		key_dump = __strdup(item->key);
 		if (!__handle_table_resize(h))
 		{
 			free(key_dump);
