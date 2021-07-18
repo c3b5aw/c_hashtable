@@ -6,11 +6,9 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 21:46:24 by marvin            #+#    #+#             */
-/*   Updated: 2021/07/17 23:55:40 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 02:07:39 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
-
-#include "../includes/hashtable_hash.h"
 
 unsigned long	__hashtable_hash_function(unsigned int capacity, char *key)
 {

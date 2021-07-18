@@ -6,13 +6,13 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 21:46:30 by marvin            #+#    #+#             */
-/*   Updated: 2021/07/18 01:59:46 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 02:08:15 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/hashtable_types.h"
 #include "../includes/hashtable_utils.h"
-#include "../includes/hashtable_methods.h"
+#include "../includes/hashtable_table.h"
 #include "../includes/hashtable_hash.h"
 
 t_hashtable_item	*hashtable_item_create(char *key, void *value)

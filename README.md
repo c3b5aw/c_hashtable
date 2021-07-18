@@ -44,11 +44,20 @@ typedef struct s_hashtable
 }						t_hashtable;
 ```
 
-### methods
+### item methods
 ```C
 t_hashtable_item	*hashtable_item_create(char *key, void *value);
-void				hashtable_item_destroy(t_hashtable_item *item);
+void				hashtable_item_destroy(t_hashtable_item *item, bool dealloc_value);
+t_hashtable_item	*hashtable_item_copy(t_hashtable **dst, t_hashtable_item *item);
+void				*hashtable_item_get(t_hashtable *hashtable, char *key);
+```
+
+### table method
+
+```C
 t_hashtable_item	*hashtable_insert(t_hashtable **h, char *key, void *value);
 t_hashtable			*hashtable_new(unsigned int size);
-void				hashtable_destroy(t_hashtable **table);
+void				hashtable_destroy(t_hashtable **table, bool dealloc_value);
+bool				hashtable_copy(t_hashtable **src, t_hashtable **dst);
+void				hashtable_iter(t_hashtable *h, void (*f)(t_hashtable_item *));
 ```

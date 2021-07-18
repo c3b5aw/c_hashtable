@@ -13,7 +13,7 @@ CSANITIZE	= -g -fsanitize=address
 RM			= /bin/rm -f
 PRINTER		= printf
 
-SRCS = __private_methods.c hash.c item.c methods.c table.c utils.c
+SRCS = __private_methods.c hash.c item.c table.c utils.c
 TESTS_SRCS = tests/main.c tests/basic_tests.c tests/find_tests.c tests/utils.c
 OBJS = $(addprefix objs/, $(SRCS:.c=.o))
 
