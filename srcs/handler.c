@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 21:47:27 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 07:31:51 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 08:45:56 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ bool	__handle_table_resize(t_hashtable **table)
 {
 	t_hashtable	*new_table;
 
-	new_table = hashtable_new((*table)->size * 2);
+	new_table = hashtable_new((*table)->size * 4);
 	if (!hashtable_copy(table, &new_table))
 	{
 		free(new_table);
@@ -33,12 +33,28 @@ bool	__handle_table_resize(t_hashtable **table)
 t_hashtable_item	*__handle_item_insert( \
 	t_hashtable **h, t_hashtable_item *item, unsigned long index)
 {
+	t_hashtable_item	*item_save;
+	char				*key_dump;
+
 	(*h)->items[index] = item;
 	++(*h)->count;
+	if ((*h)->count >= (*h)->size)
+	{
+		key_dump = strdup(item->key);
+		if (!__handle_table_resize(h))
+		{
+			free(key_dump);
+			return (0);
+		}
+		item_save = hashtable_item_get(*h, key_dump, \
+			__hashtable_hash_function((*h)->size, key_dump));
+		free(key_dump);
+		return (item_save);
+	}
 	return (item);
 }
 
-static t_hashtable_item	*__handle__collision( \
+static t_hashtable_item	*__handle_collision( \
 		t_hashtable **h, t_hashtable_item *item, unsigned long index)
 {
 	t_hashtable_bucket	*bucket;
@@ -57,7 +73,6 @@ static t_hashtable_item	*__handle__collision( \
 		if (!(*h)->buckets[index])
 			return (0);
 	}
-	(*h)->count++;
 	return (item);
 }
 
@@ -85,5 +100,5 @@ t_hashtable_item	*__handle_item_insert_collision( \
 		hashtable_item_destroy(item, false);
 		return ((*h)->items[index]);
 	}
-	return (__handle__collision(h, item, index));
+	return (__handle_collision(h, item, index));
 }

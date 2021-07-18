@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 04:49:52 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 06:59:20 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 08:36:49 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,6 @@ bool	malloc_too_much(void)
 		sprintf(buf, "NAME_%d", i);
 		hashtable_insert(&hashtable, strdup(buf), ptr);
 	}
-	printf("%d %d\n", hashtable->size, hashtable->count);
 	if (!test_destroy(&hashtable, ADV_TEST_1))
 		return (false);
 	return (true);

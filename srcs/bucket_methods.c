@@ -6,13 +6,14 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 05:47:25 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 07:37:35 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 08:43:31 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/hashtable_types.h"
 #include "../includes/hashtable_utils.h"
 #include "../includes/hashtable_item.h"
+#include "../includes/hashtable_table.h"
 
 t_hashtable_bucket	*hashtable_bucket_new(t_hashtable_item *item)
 {
@@ -52,11 +53,19 @@ t_hashtable_bucket	*hashtable_bucket_insert( \
 		return (bucket);
 	}
 	save = bucket;
-	while (save->next->next)
+	while (save->next)
 		save = save->next;
 	node = hashtable_bucket_new(item);
 	if (!node)
 		return (0);
 	save->next = node;
 	return (bucket);
+}
+
+t_hashtable_item	*hashtable_bucket_copy(
+	t_hashtable **dst, t_hashtable_bucket *bucket)
+{
+	if (!*dst || !bucket)
+		return (0);
+	return (hashtable_insert(dst, bucket->item->key, bucket->item->value));
 }

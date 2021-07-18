@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 06:02:03 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 06:49:29 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 07:57:57 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,13 @@ void	hashtable_buckets_remove(t_hashtable_bucket	*root)
 {
 	t_hashtable_bucket	*save;
 
+	if (!root)
+		return ;
 	while (root)
 	{
 		save = root;
 		root = root->next;
-		hashtable_bucket_delete(save, false);
+		hashtable_bucket_delete(save, true);
 		free(save);
 	}
 }

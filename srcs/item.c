@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 21:46:30 by marvin            #+#    #+#             */
-/*   Updated: 2021/07/18 07:27:09 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 08:27:08 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,9 +32,11 @@ void	hashtable_item_destroy(t_hashtable_item *item, bool dealloc_value)
 {
 	if (!item)
 		return ;
-	free(item->key);
 	if (dealloc_value)
+	{
+		free(item->key);
 		free(item->value);
+	}
 	free(item);
 }
 
@@ -71,7 +73,7 @@ t_hashtable_item	*hashtable_item_copy( \
 {
 	if (!item || !*dst)
 		return (0);
-	return (hashtable_insert(dst, __strdup(item->key), item->value));
+	return (hashtable_insert(dst, item->key, item->value));
 }
 
 void	*hashtable_item_get(t_hashtable *hashtable, char *key, bool value)
@@ -80,6 +82,8 @@ void	*hashtable_item_get(t_hashtable *hashtable, char *key, bool value)
 	t_hashtable_bucket	*bucket;
 	unsigned long		index;
 
+	if (!hashtable || !key)
+		return (0);
 	index = __hashtable_hash_function(hashtable->size, key);
 	item = hashtable->items[index];
 	bucket = hashtable->buckets[index];
