@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 23:37:38 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 01:35:55 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 04:54:24 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ bool	insert_more_test(void)
 	return (true);
 }
 
-int	basic_tests(void)
+bool	basic_tests(void)
 {
 	if (!create_and_destroy_test())
 		return (false);

@@ -6,21 +6,11 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 00:27:15 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 01:13:17 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 09:29:29 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <stdlib.h>
-
-unsigned long	__strlen(const char *s)
-{
-	const char	*anchor;
-
-	anchor = s;
-	while (*++s)
-		;
-	return (s - anchor);
-}
 
 int	__strcmp(const char *s1, const char *s2)
 {
@@ -42,6 +32,16 @@ void	*__memcpy(void *dst, const void *src, unsigned long n)
 	while (n--)
 		*(unsigned char *)dst++ = *(unsigned char *)src++;
 	return ((void *)(ptr_dest));
+}
+
+static unsigned long	__strlen(const char *s)
+{
+	const char	*anchor;
+
+	anchor = s;
+	while (*++s)
+		;
+	return (s - anchor);
 }
 
 char	*__strdup(char *s)

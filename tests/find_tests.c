@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 01:44:19 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 04:43:28 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 09:22:32 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,13 +62,17 @@ bool	find_removed_one(void)
 	void				*value;
 
 	hashtable = 0;
-	if (!test_init(&hashtable, 5, FIND_TEST_2))
+	if (!test_init(&hashtable, 5, FIND_TEST_3))
 		return (false);
-	item1 = hashtable_insert(&hashtable, strdup("NAME_1"), strdup("NAME_1"));
+	hashtable_insert(&hashtable, strdup("NAME_1"), strdup("NAME_1"));
 	hashtable_insert(&hashtable, strdup("NAME_2"), strdup("NAME_2"));
 	hashtable_insert(&hashtable, strdup("NAME_3"), strdup("NAME_3"));
 	hashtable_insert(&hashtable, strdup("NAME_4"), strdup("NAME_4"));
 	hashtable_insert(&hashtable, strdup("NAME_5"), strdup("NAME_5"));
+	item1 = hashtable_item_get(hashtable, "NAME_1", false);
+	if (!item1)
+		return (error(&hashtable, FIND_TEST_3, NOEXIST_ERR));
+	hashtable_iter(hashtable, show_data);
 	hashtable_item_remove(hashtable, item1);
 	value = hashtable_item_get(hashtable, "NAME_1", true);
 	if (value)
@@ -78,7 +82,7 @@ bool	find_removed_one(void)
 	return (true);
 }
 
-int	find_tests(void)
+bool	find_tests(void)
 {
 	if (!find_one())
 		return (false);

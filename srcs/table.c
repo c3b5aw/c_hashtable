@@ -6,12 +6,14 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/17 21:47:20 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 02:09:36 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/18 09:15:48 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/hashtable_hash.h"
-#include "../includes/hashtable__private_methods.h"
+#include "../includes/hashtable_handler.h"
+#include "../includes/hashtable_buckets.h"
+#include "../includes/hashtable_bucket_methods.h"
 #include "../includes/hashtable.h"
 
 /**
@@ -46,6 +48,12 @@ t_hashtable	*hashtable_new(unsigned int size)
 	i = -1;
 	while (++i < ret->size)
 		ret->items[i] = 0;
+	ret->buckets = hashtable_buckets_init(ret);
+	if (!ret->buckets)
+	{
+		hashtable_destroy(&ret, true);
+		return (0);
+	}
 	return (ret);
 }
 
@@ -72,6 +80,7 @@ void	hashtable_destroy(t_hashtable **table, bool dealloc_value)
 		if (item)
 			hashtable_item_destroy(item, dealloc_value);
 	}
+	hashtable_buckets_destroy(*table, dealloc_value);
 	free((*table)->items);
 	free((*table));
 	*table = 0;
@@ -89,15 +98,28 @@ void	hashtable_destroy(t_hashtable **table, bool dealloc_value)
  */
 bool	hashtable_copy(t_hashtable **src, t_hashtable **dst)
 {
-	unsigned int	i;
+	t_hashtable_bucket	*bucket;
+	unsigned int		i;
 
 	if (!*dst || !*src)
 		return (false);
 	i = -1;
 	while (++i < (*src)->size && i < (*dst)->size)
+	{
 		if ((*src)->items[i])
 			if (!hashtable_item_copy(dst, (*src)->items[i]))
 				return (false);
+		if ((*src)->buckets[i])
+		{
+			bucket = (*src)->buckets[i];
+			while (bucket && bucket->item)
+			{
+				if (!hashtable_item_copy(dst, bucket->item))
+					return (false);
+				bucket = (*src)->buckets[i]->next;
+			}
+		}
+	}
 	return (true);
 }
 
@@ -111,14 +133,26 @@ bool	hashtable_copy(t_hashtable **src, t_hashtable **dst)
 
 void	hashtable_iter(t_hashtable *h, void (*f)(t_hashtable_item *))
 {
-	unsigned int	i;
+	t_hashtable_bucket	*bucket;
+	unsigned int		i;
 
 	if (!h || !f)
 		return ;
 	i = -1;
 	while (++i < h->size)
+	{
 		if (h->items[i])
 			f(h->items[i]);
+		if (h->buckets[i])
+		{
+			bucket = h->buckets[i];
+			while (bucket)
+			{
+				f(bucket->item);
+				bucket = bucket->next;
+			}
+		}
+	}
 }
 
 /**
@@ -157,5 +191,5 @@ t_hashtable_item	*hashtable_insert(t_hashtable **h, char *key, void *value)
 	current_item = (*h)->items[index];
 	if (!current_item)
 		return (__handle_item_insert(h, item, index));
-	return (__handle_item_insert_collision(h, item, current_item));
+	return (__handle_item_insert_collision(h, item, current_item, index));
 }
