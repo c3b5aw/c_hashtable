@@ -2,7 +2,8 @@
 	"files.exclude": {
 		"**/*.a": true,
 		".vscode": true,
-		".md": true,
+		"**/*.md": true,
+		"**/*.png": true,
 		"objs": true,
 		".git*": true
 	}
