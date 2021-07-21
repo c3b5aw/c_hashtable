@@ -6,7 +6,7 @@
 /*   By: c3b5aw <dev@c3b5aw.dev>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/18 05:47:25 by c3b5aw            #+#    #+#             */
-/*   Updated: 2021/07/18 09:24:59 by c3b5aw           ###   ########.fr       */
+/*   Updated: 2021/07/21 17:36:15 by c3b5aw           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,10 +49,7 @@ t_hashtable_bucket	*hashtable_bucket_insert( \
 	t_hashtable_bucket	*save;
 
 	if (!bucket)
-	{
-		bucket = hashtable_bucket_new(item);
-		return (bucket);
-	}
+		return (hashtable_bucket_new(item));
 	else if (!bucket->next)
 	{
 		node = hashtable_bucket_new(item);
