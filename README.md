@@ -4,7 +4,11 @@
 [![.github/workflows/tests.yml](https://github.com/c3b5aw/c_hashtable/actions/workflows/tests.yml/badge.svg)](https://github.com/c3b5aw/c_hashtable/actions/workflows/tests.yml) <br />
 [![Codacy Badge](https://app.codacy.com/project/badge/Grade/4dd2af2c25784a18a92d5ac8f55f426e)](https://www.codacy.com/gh/c3b5aw/c_hashtable/dashboard?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=c3b5aw/c_hashtable&amp;utm_campaign=Badge_Grade)
 
-## usage
+## theory
+
+![Fighint overlap theory](carbon.png)
+
+### usage
 
 ```C
 #include "includes/hashtable.c"
